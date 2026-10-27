@@ -1,0 +1,37 @@
+{
+ "scenes": [
+  {
+   "id": "example",
+   "title": "Example scene",
+   "cameras": "example/meta/cameras.json",
+   "frames": 64,
+   "fps": 25,
+   "front": 0,
+   "near": 0.01,
+   "panes": [
+    {
+     "id": "ours",
+     "title": "Faltwerk (step 0)",
+     "kind": "csgs",
+     "dir": "example/ours",
+     "rates": [
+      {
+       "label": "step 0",
+       "mbit_s": 0.0
+      }
+     ]
+    },
+    {
+     "id": "other",
+     "title": "Other method",
+     "kind": "splq",
+     "dir": "example/other"
+    }
+   ],
+   "gt": {
+    "dir": "example/gt",
+    "ext": "jpg"
+   }
+  }
+ ]
+}

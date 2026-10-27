@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CurveStream-GS – WebGPU decoder (P5)</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; font: 13px/1.3 system-ui, sans-serif; }
+  #c { width: 100vw; height: 100vh; display: block; touch-action: none; }
+  #hud { position: fixed; left: 8px; top: 8px; right: 8px; color: #cfd; text-shadow: 0 0 3px #000; pointer-events: none; }
+  #hud button, #hud label, #hud select { pointer-events: auto; margin-right: 6px; }
+  #hud input[type=color] { width: 28px; height: 18px; padding: 0; border: 0; vertical-align: middle; background: none; }
+  #recolor-info { margin-right: 6px; opacity: 0.8; }
+  #stats { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud"><button id="play" type="button">▶/❚❚</button><select id="scene" hidden></select><label><span data-de="Hintergrund">Background</span> <input id="bg" type="color" value="#000000"></label><label id="occ-box" hidden><input id="occ" type="checkbox" checked><span data-de="Hände verdecken">Hands occlude</span></label><label id="occ-debug-box" hidden><input id="occ-debug" type="checkbox"><span data-de="Verdeckung rot zeigen">Show occlusion in red</span></label><label id="recolor-box" hidden><input id="recolor" type="checkbox"><span data-de="Auto-Farbe">Auto colour</span></label><span id="recolor-info"></span><button id="xr-ar" type="button" hidden>MR</button><span id="stats" data-de="lade …">loading …</span></div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

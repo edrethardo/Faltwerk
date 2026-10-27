@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the repository."
+title: "Faltwerk: a streaming codec for 4D Gaussian Splatting"
+abstract: "Curve-based compression of dynamic Gaussian splats with colour codebooks, spatial ordering, flow-guided motion and a WebGPU decoder."
+authors:
+  - family-names: "Nowak"
+    given-names: "Aaron"
+repository-code: "https://github.com/edrethardo/Faltwerk"
+license: MIT
+type: software
+keywords:
+  - gaussian splatting
+  - 4D reconstruction
+  - video codec
+  - WebGPU
+  - streaming

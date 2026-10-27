@@ -1,0 +1,19 @@
+{
+  "name": "csgs-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CurveStream-GS P5: WebGPU decoder/player for .csgs sections",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.ts src/worker.ts src/compare.ts --bundle --format=esm --target=es2022 --outdir=dist && node -e \"for (const f of ['index.html', 'compare.html']) require('fs').copyFileSync(f, 'dist/' + f)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.66",
+    "@types/webxr": "^0.5.24",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0",
+    "@types/node": "^24.0.0"
+  }
+}
