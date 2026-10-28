@@ -12,6 +12,13 @@ The method (`CurveStream-GS`) folds space and time into a small number of spline
 - **Matte and near-plane pruning** during training removes ghost splats in front of the camera.
 - **Quality-driven rate control:** encoder parameters are chosen per key interval so that every section reaches a chosen quality step (four steps, from "transparent" to compact).
 
+## Demo (work in progress)
+
+<img src="docs/media/faltwerk_queen_demo.gif" width="360" alt="Three rows: QUEEN published model; QUEEN transcoded with the Faltwerk encoder; QUEEN with a short fine-tune and the Faltwerk encoder">
+
+NVIDIA's published QUEEN model (top) next to the same model transcoded into Faltwerk's curve format (middle) and with a short fine-tune before encoding (bottom). 64-frame excerpt of one scene, front view, then a slow orbit beyond the capture rig; rates are all bytes for the 64 frames. Not a benchmark – quality metrics follow once verified.
+Scene: Neural 3D Video (Li et al., CVPR 2022, CC BY-NC 4.0). Model: QUEEN (Girish et al., NeurIPS 2024, CC BY-NC-SA 4.0), modified. The GIF is licensed CC BY-NC-SA 4.0, research use only – details and full attribution in [`docs/media/README.md`](docs/media/README.md).
+
 ## Repository layout
 
 ```
@@ -43,7 +50,7 @@ Research code, moving quickly. The bitstream format is documented and versioned;
 
 ## License
 
-MIT for the code, see `LICENSE`. Third-party datasets and models are **not** part of this repository and not covered by that license, see `THIRD_PARTY.md`.
+MIT for the code, see `LICENSE`. Exception: media in `docs/media/` are CC BY-NC-SA 4.0 (adapted third-party material), see [`docs/media/README.md`](docs/media/README.md). Third-party datasets and models are **not** part of this repository and not covered by the MIT license, see `THIRD_PARTY.md`.
 
 ## Citation
 
