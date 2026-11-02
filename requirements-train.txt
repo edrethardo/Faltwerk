@@ -1,0 +1,9 @@
+# training and decoded evaluation (GPU with CUDA). Tested with torch 2.4 and gsplat 1.5.3.
+-r requirements.txt
+torch>=2.4
+gsplat==1.5.3
+pillow
+imageio-ffmpeg       # train/llff/prep_frames.py (video decode)
+lpips                # metrics, optional fine-tune loss
+opencv-python        # optional: train/flow/gt_flow.py
+transformers         # optional: train/llff/p15_prep.py mono (Depth Anything V2)

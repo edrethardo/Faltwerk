@@ -1,0 +1,3 @@
+{"name": "rig_example", "kind": "rig", "frames": 64, "gt": "work/data/gt/my_rig",
+ "teacher": "work/data/teacher/my_rig/{:05d}.ply", "teacher_frames": 50,
+ "note": "placeholder paths: matted RGBA rig GT + one 3DGS PLY per frame (docs/recipe.md)"}

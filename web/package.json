@@ -1,0 +1,19 @@
+{
+  "name": "faltwerk-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Faltwerk Viewer: WebGPU decoder/player for Faltwerk-format sections (.falt, legacy .csgs)",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.ts src/worker.ts src/compare.ts --bundle --format=esm --target=es2022 --outdir=dist && node -e \"for (const f of ['index.html', 'compare.html']) require('fs').copyFileSync(f, 'dist/' + f)\"",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.66",
+    "@types/webxr": "^0.5.24",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0",
+    "@types/node": "^24.0.0"
+  }
+}

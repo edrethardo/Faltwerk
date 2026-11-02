@@ -1,0 +1,2 @@
+{"name": "n3dv_sear_steak", "gt": "work/data/gt/n3dv_sear_steak_1352", "frames": 64, "kind": "llff",
+ "note": "Neural 3D Video (CC BY-NC 4.0, research use): download the scene yourself, then train/llff/prep_frames.py + colmap_init.sh (docs/recipe.md)"}

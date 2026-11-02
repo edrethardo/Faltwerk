@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# renders of scene data (incl. GT crops in cmp_*.png): local only, never commit
+bench/results/**/*.png
+bench/results/**/*.rgb

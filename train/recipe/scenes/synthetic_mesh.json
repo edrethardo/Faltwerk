@@ -1,0 +1,3 @@
+{"name": "synthetic_mesh", "looks": ["shaded"],
+ "geom": [{"dir": "work/synthetic/geom", "f0": 0, "frames": 36, "cams": "work/synthetic/cams.json"}],
+ "note": "written by: python3 tools/make_synthetic_mesh.py work/synthetic"}

@@ -1,0 +1,4 @@
+# codec, tests and the mesh source of the standard recipe (CPU)
+numpy
+zstandard
+pytest

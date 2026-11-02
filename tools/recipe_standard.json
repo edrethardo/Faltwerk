@@ -1,0 +1,46 @@
+{
+ "_doc": "standard recipe: ONE constant set per source, no scene values. Rules: train/recipe/recipe_rules.py, docs/recipe.md. Change a constant only after the Gegenprobe on every scene of its source (tolerance -0.1 dB / +5 % rate).",
+ "encode": {
+  "common": {
+   "giant_rel": 0.5,
+   "runaway_rel": 3.0,
+   "qstep_mode": "px",
+   "qstep_px": 0.5,
+   "qstep_rel": 0.85,
+   "sn_deg": "auto",
+   "ktol": 1,
+   "key_interval": 4,
+   "deep_floor": true,
+   "pred": "",
+   "knn_k": 0,
+   "morton": false,
+   "fps": 30.0
+  },
+  "images": {},
+  "mesh": {"pred": "all=2", "knn_k": 4, "morton": true}
+ },
+ "budget": {
+  "_doc": "only when a delivery rate target is given: contrib ranking scored on EVERY frame, then the kept splats are fine-tuned again (prune -> fine-tune), then the same clean encode",
+  "contrib_fstep": 1,
+  "finetune_after_prune": true
+ },
+ "images": {
+  "_doc": "near plane 0.9 x min camera near (LLFF) else 0.1 x min camera distance; random background + alpha loss whenever the GT has a matte; init regularisers the same for every scene",
+  "init": "--depth sparse --depth-w 0.05 --expo --near-prune 1.0 --scale-reg 0.01 --opa-reg 0.01",
+  "train_env": "P15_EXPO_LEARN=1e-3 P15_NEARPRUNE=1.0 E7_K=5 E7_SOFT_KNOT0=1 E7_CURV=3e-5 E7_CURV_ATTRS=means,quats,scales,sh0 E7_GROW=0.0004 E7_L=32 E7_REFRESH=8 E7_ITS=15000 E7_SEED=0 E7_STATIC_LR=0.3",
+  "matte": {"P8_RANDBG": "1", "P8_RANDBG_P": "0.5", "P8_ALPHA": "0.3", "P43_MATTE": "1"},
+  "teacher": {"P43_SWAP_TAU_REL": 2.06, "TOLP_REL": 1.43, "P43_ITT": "1200", "P43_ITT2": "400", "P43_LR": "3", "P43_REFRESH": "0", "E3_SH": "0",
+              "S2_L": 16, "S2_K": 9, "P43_FT_LPIPS": "0.1", "P43_FT_ITS": "3000"}
+ },
+ "mesh": {
+  "_doc": "sample spacing h = spacing_px x pixel footprint at the median camera distance of the figures; per mesh the spacing never drops below 1 px at its closest camera distance (replaces max-per-model / --cap-owner); far + static meshes go to their own stream (backdrop); the P42 v2 splat fix is always on",
+  "spacing_px": 2.1,
+  "max_per_mesh": 25000,
+  "sigma": 0.7,
+  "backdrop_dist_rel": 10.0,
+  "fix": "--sampling poisson --curv-cap 0.4 --curv-dens 4 --edge-cap 1.5 --crease-deg 50 --grow-ratio 4 --thin-open 3 --thin-aniso --thin-inset 1.0 --ontop",
+  "_fix_doc": "--thin-open 3 = thin open meshes (decals, w = 2A/P_open < 3h) sampled at w/3 (floor 0.5 px at their closest camera) and at their largest size, --thin-aniso their splats follow the deformation gradient, --thin-inset 1.0 no samples closer than 1 sigma to their open edge (the Gaussian rim lies ~0.72 sigma outside); --ontop = <geom>/flags.json (ba3_export.py flags) depthTest-off meshes moved in front of their occluders along the film camera rays (dropped when the scene has no flags.json)",
+  "K": 33,
+  "L": 33
+ }
+}

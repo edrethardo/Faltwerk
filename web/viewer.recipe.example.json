@@ -1,0 +1,22 @@
+{
+ "_comment": "Recipe for bench/make_viewer_data.py manifest. Copy to <served root>/recipe.json; paths are relative to that directory. To show a new run: copy its .falt sections into a new dir, point a pane's dir (and its rate JSON) there and rerun the manifest step. Pane kind falt = Faltwerk stream (old recipes say csgs, still accepted); splq = quantised per-frame splat dumps.",
+ "out": "manifest.json",
+ "scenes": [
+  {
+   "id": "flame_steak",
+   "title": "N3DV flame_steak (research evaluation only, CC BY-NC 4.0)",
+   "cameras": "flame_steak/meta/cameras.json",
+   "frames": 64,
+   "near": 5.1,
+   "default_snap": "cam00",
+   "gt": {"dir": "flame_steak/gt", "ext": "jpg", "title": "Original (cam00)"},
+   "panes": [
+    {"id": "ours", "title": "Faltwerk (standard recipe)", "kind": "falt", "dir": "flame_steak/ours",
+     "rates": [{"label": "", "json": "flame_steak/meta/eval.json", "path": "mbit_s"}],
+     "metrics": [{"label": "PSNR", "json": "flame_steak/meta/eval.json", "path": "mean_psnr", "fmt": ".2f", "unit": " dB"}]},
+    {"id": "ours_small", "title": "Faltwerk (rate target 20)", "kind": "falt", "dir": "flame_steak/ours_small",
+     "rates": [{"label": "", "json": "flame_steak/meta/eval_small.json", "path": "mbit_s"}]}
+   ]
+  }
+ ]
+}
