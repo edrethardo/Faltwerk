@@ -109,7 +109,7 @@ def main():
     if basis == 'hat' and nbelow > 0 and c.get('deep_floor', True):
         cvx = os.path.join(a.out, 'curves_deep.npz')
         if not os.path.exists(cvx):
-            subprocess.run([sys.executable, os.path.join(ROOT, 'experiments', 'p40', 'deep_floor.py'), cv, cvx], check=True,
+            subprocess.run([sys.executable, os.path.join(ROOT, 'train', 'recipe', 'deep_floor.py'), cv, cvx], check=True,
                            stdout=subprocess.DEVNULL)
     ks = tuple(k for k in (1, 2, 3, 5, 9, 17, 33) if k <= K)
     rules = {'encoder': 'p44-v2', 'source': a.source, 'cfg': c, 'stats': st['summary'], 'derived': d, 'sn_deg': sn_deg, 'ks': list(ks),

@@ -47,7 +47,7 @@ Examples: `train/recipe/scenes/`. Paths are relative to the repository root (the
 <gt>/colmap/sparse_txt/, <gt>/init_points.npz, <gt>/sparse_depth.npz     llff only, written by the prep steps below
 ```
 
-`cameras.json`: `{"frames": N, "fps": 30, "width": W, "height": H, "cameras": [{"name": "cam00", "split": "test"|"train", "R": [[...]], "t": [...], "fx", "fy", "cx", "cy", "near", "far"}, ...]}` – OpenCV world-to-camera `R`, `t`; `near`/`far` only for LLFF-style data. The test cameras are held out for the decoded evaluation.
+`cameras.json`: `{"frames": N, "fps": 30, "width": W, "height": H, "cameras": [{"name": "cam00", "split": "test"|"train", "R": [[...]], "t": [...], "fx", "fy", "cx", "cy", "near", "far"}, ...]}` – OpenCV world-to-camera `R`, `t`; `near`/`far` only for LLFF-style data. The test cameras are held out for the decoded evaluation. For LLFF, set `width` and `height`; legacy square inputs may use `res` instead. Rig/teacher inputs additionally require top-level `W` and `H` with the same dimensions (the rig reader uses these keys).
 
 Neural 3D Video (CC BY-NC 4.0, download it yourself from the authors' release): put the scene's `cam*.mp4` and `poses_bounds.npy` under `work/data/n3dv/<scene>/`, then
 

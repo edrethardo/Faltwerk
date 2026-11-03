@@ -47,7 +47,7 @@ def viewmat(c):
 
 VM = torch.tensor(np.stack([viewmat(c) for c in cams]), device=dev)
 K = torch.tensor(np.stack([[[c['fx'], 0, c['cx']], [0, c['fy'], c['cy']], [0, 0, 1]] for c in cams]), dtype=torch.float32, device=dev)
-W = int(meta.get('width', meta['res'])); H = int(meta.get('height', meta['res']))   # non-square GT (P6 N3DV 1352x1014); default unchanged
+W = int(meta['width'] if 'width' in meta else meta['res']); H = int(meta['height'] if 'height' in meta else meta['res'])   # non-square GT (P6 N3DV 1352x1014); default unchanged
 
 
 def load_frame(t):
