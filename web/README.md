@@ -15,6 +15,32 @@ python3 serve_viewer.py <root> [port] --https   # binds ALL interfaces with a se
 
 WebGPU needs a secure context (HTTPS or `localhost`). Use `--https` only on a trusted network.
 
+The served `<root>` is a directory you assemble: the built viewer (`web/dist/*`), the `.falt` sections and a scene file (`scene.json` for `index.html`) or a manifest (`manifest.json` for `compare.html`). Scene data never lives in this repository.
+
+## Synthetic demo (no data download, runs on CPU)
+
+From the repository root, with a Python that has `numpy scipy zstandard pillow`:
+
+```bash
+python tools/make_synthetic_mesh.py work/syn --frames 64                        # bouncing sphere, ribbon, far wall
+python tools/faltwerk_recipe.py --source mesh --scene work/syn/scene.json --out work/run --py "$(which python)"
+bash work/run/recipe.sh                                                          # mesh -> splats -> .falt (~20 s, CPU)
+(cd web && npm ci && npm run build)
+python web/make_scene.py work/root work/run/shaded_p0_fg/enc/falt               # root = viewer + data/ + scene.json
+python web/serve_viewer.py work/root                                             # http://127.0.0.1:8790/index.html
+```
+
+`make_scene.py` reads first frame and frame count from each section header; `--center/--up/--front/--dist/--elev/--fovy` set the orbit camera (defaults fit the synthetic scene). The far wall is a separate stream (`work/run/shaded_p0_bd/enc/falt`).
+
+**Without a GPU:** Chromium can run WebGPU on the CPU (SwiftShader). Add `offscreen=1`: SwiftShader has no usable swap chain, without it the device is lost after the first frame. Expect a few frames per second (one GPU pass takes ~120 ms on the CPU for ~3k splats).
+
+```bash
+chromium --enable-unsafe-webgpu --enable-unsafe-swiftshader --use-webgpu-adapter=swiftshader \
+  "http://127.0.0.1:8790/index.html?scene=scene.json&offscreen=1"
+```
+
+In offscreen mode the canvas stays empty; `window.__p5.snapshot()` (browser console) draws the current frame on top.
+
 ## Scene data and the comparison manifest
 
 The viewer expects scene data in the served directory (never in this repository): per scene a camera file, the `.falt` sections of each pane and optional reference stills.

@@ -43,8 +43,10 @@ Viewer (Node >= 23):
 
 ```bash
 cd web && npm ci && npm test && npm run build
-python3 serve_viewer.py <data dir>                # http://127.0.0.1:8790, see web/README.md
+python3 serve_viewer.py <root>                    # <root> = built viewer + .falt sections + scene.json
 ```
+
+No data at hand? `web/README.md` → "Synthetic demo" builds a stream from a synthetic scene and a ready-to-serve root (`web/make_scene.py`), also without a GPU (Chromium + SwiftShader).
 
 ## Standard recipe: scene -> Faltwerk stream
 
