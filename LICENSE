@@ -19,15 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Third-party data and models are NOT covered by this license and are not
-distributed with this repository:
-
-- Neural 3D Video (Li et al., CVPR 2022) is licensed CC BY-NC 4.0 and is used
-  for research evaluation only; no dataset files or derived media are
-  redistributed here. The preparation scripts in train/llff/ expect you to
-  download the dataset yourself under its license.
-- Pretrained models loaded at run time (e.g. Depth Anything V2, LPIPS weights)
-  come with their own licenses, see THIRD_PARTY.md.
